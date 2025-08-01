@@ -1,13 +1,13 @@
 package com.SpringStart.SpringProjeStart;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.Proje.Model.User;
+import com.Proje.Config.AppConfig;
 import com.Proje.Services.UserService;
 
 import lombok.experimental.var;
@@ -19,20 +19,13 @@ public class SpringProjeStartApplication {
 		SpringApplication.run(SpringProjeStartApplication.class, args);
 	
 		
-		UserService userListService = new UserService();
-		List<User> userList = new ArrayList<>();
-		userList.add(new User("Ulvi"));
-		userList.add(new User("Senan"));
-		userList.add(new User("Ferid"));
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		UserService userService = context.getBean(UserService.class);
+		UserService userService2 = context.getBean(UserService.class);
 		
-		userListService.setUserList(userList);
-		
-		UserService userListService2 = new UserService();
-		
-		for(var user : userListService.getUserList()) {
-			System.out.println(user.getFirstName());
+		for(var user : userService2.getUserList()) {
+			System.out.println(user);
 		}
-
 	}
 
 }
