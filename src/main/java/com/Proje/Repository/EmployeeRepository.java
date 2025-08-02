@@ -1,5 +1,6 @@
 package com.Proje.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,19 @@ public class EmployeeRepository {
 		Emplyee findEmplyee = getByEmployee(id);
 		if(findEmplyee == null) throw new RuntimeException("Employee not found with id: " + id);
 		empList.remove(findEmplyee);
+	}
+	
+	public List<Emplyee> getParams(String firstName, String lastName){
+		List<Emplyee> list = new ArrayList<>();
+		if(firstName==null && lastName==null) {
+			return getAllEmployeList();
+		}
+		for(Emplyee emplyee : empList) {
+			if(emplyee.getFirstName().equalsIgnoreCase(firstName) && emplyee.getLastName().equalsIgnoreCase(lastName)) {
+				list.add(emplyee);
+			}
+		}
+		return list;
 	}
 
 }

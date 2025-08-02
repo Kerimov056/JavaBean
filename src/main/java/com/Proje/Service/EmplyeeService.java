@@ -40,4 +40,8 @@ public class EmplyeeService {
 	public void deleteEmployee(String id) {
 		employeeRepository.deleteEmployee(id);
 	}
+	
+	public List<Emplyee> getParamsList(String firstName, String lastName){
+		return employeeRepository.getParams(firstName, lastName);
+	}
 }

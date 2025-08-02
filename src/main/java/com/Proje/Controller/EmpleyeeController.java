@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Proje.Dto.EmployeeUpdateDto;
@@ -53,5 +54,11 @@ public class EmpleyeeController {
 	public ResponseEntity<String> deleteEmployee(@PathVariable(name = "id", required = true) String id){
 		emplyeeService.deleteEmployee(id);
 		return ResponseEntity.ok("Deleted Employee");
+	}
+	
+	@GetMapping(path = "/with-params")
+	public List<Emplyee> GetEmployeWithParams(@RequestParam(name="firstName") String firstName,
+											  @RequestParam(name="lastName") String lastName){
+		return emplyeeService.getParamsList(firstName, lastName);
 	}
 }
