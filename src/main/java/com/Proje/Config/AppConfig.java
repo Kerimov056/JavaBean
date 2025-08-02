@@ -6,22 +6,19 @@ import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.Proje.Model.User;
-import com.Proje.Services.UserService;
+import com.Proje.Model.Emplyee;
 
 @Configuration
 public class AppConfig {
 
+	
 	@Bean
-	public UserService userService() {
-		UserService userListService = new UserService();
-		List<User> userList = new ArrayList<>();
-		userList.add(new User("Ulvi"));
-		userList.add(new User("Senan"));
-		userList.add(new User("Ferid"));
+	public List<Emplyee> employeeList (){
+		List<Emplyee> emplyeList = new ArrayList<>();
+		emplyeList.add(new Emplyee("1","Ulvi","Kerimov"));
+		emplyeList.add(new Emplyee("2","Resad","Ibrahimov"));
+		emplyeList.add(new Emplyee("3","Selimov","Elizar"));
 		
-		userListService.setUserList(userList);
-		
-		return userListService;
+		return emplyeList;
 	}
 }
